@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_player"]
 [ext_resource type="Script" path="res://scripts/forest_generator.gd" id="2_forest"]
 [ext_resource type="Script" path="res://scripts/mobile_controls.gd" id="3_controls"]
 [ext_resource type="Script" path="res://scripts/world_controller.gd" id="4_world"]
+[ext_resource type="Script" path="res://scripts/relic_pickup.gd" id="5_pickup"]
 
 [sub_resource type="Environment" id="Environment_world"]
 background_mode = 1
@@ -90,12 +91,38 @@ current = true
 
 [node name="AncientRelic" type="Area3D" parent="."]
 position = Vector3(0, 0.9, -18.0)
+script = ExtResource("5_pickup")
+display_name = "First shard"
 
 [node name="RelicMesh" type="MeshInstance3D" parent="AncientRelic"]
 mesh = SubResource("SphereMesh_relic")
 material_override = SubResource("Material_relic")
 
 [node name="RelicCollision" type="CollisionShape3D" parent="AncientRelic"]
+shape = SubResource("SphereShape3D_relic")
+
+[node name="ShardTwo" type="Area3D" parent="."]
+position = Vector3(-10.0, 0.9, -8.0)
+script = ExtResource("5_pickup")
+display_name = "Forest shard"
+
+[node name="ShardTwoMesh" type="MeshInstance3D" parent="ShardTwo"]
+mesh = SubResource("SphereMesh_relic")
+material_override = SubResource("Material_relic")
+
+[node name="ShardTwoCollision" type="CollisionShape3D" parent="ShardTwo"]
+shape = SubResource("SphereShape3D_relic")
+
+[node name="ShardThree" type="Area3D" parent="."]
+position = Vector3(11.0, 0.9, -25.0)
+script = ExtResource("5_pickup")
+display_name = "Deep-wood shard"
+
+[node name="ShardThreeMesh" type="MeshInstance3D" parent="ShardThree"]
+mesh = SubResource("SphereMesh_relic")
+material_override = SubResource("Material_relic")
+
+[node name="ShardThreeCollision" type="CollisionShape3D" parent="ShardThree"]
 shape = SubResource("SphereShape3D_relic")
 
 [node name="TouchControls" type="CanvasLayer" parent="."]
