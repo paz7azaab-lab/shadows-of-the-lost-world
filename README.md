@@ -1,23 +1,12 @@
 # SHADOWS OF THE LOST WORLD
 
-A third-person 3D adventure and survival game prototype for Android, built with Godot 4 and GDScript.
+## Playable browser alpha (no Godot)
+Open [index.html](./index.html) or publish the repository with GitHub Pages. The browser alpha is the active playable milestone and does not require a game engine installation or APK.
 
-## Project direction
-- Third-person exploration in a mysterious forest and ancient ruins
-- Mobile-first touch controls, with keyboard controls for editor testing
-- Colorful, readable environments and performance-conscious 3D scenes
-- Build in small, testable milestones; do not claim an Android build until it has actually been exported and tested
+### Controls
+- Desktop: WASD / arrow keys to move; E to interact.
+- Mobile: on-screen directional pad and INTERACT button.
+- Collect glowing shards, gather wood and stone, manage hunger/health, and craft one campfire using 5 wood + 3 stone.
 
-## Current status
-Repository initialized. The first milestone is a runnable Godot project foundation and a simple exploration scene. This is not yet a complete game or an Android APK.
-
-## Open with Godot
-1. Install Godot 4.x on a supported computer.
-2. Import this repository folder using `project.godot`.
-3. Run the main scene.
-
-## Quality gates
-- Project files are versioned in GitHub.
-- Test syntax and run the project in Godot before marking the milestone complete.
-- Test on a real Android device before claiming mobile readiness.
-- Keep future changes focused and document any unverified steps.
+### Scope and honest status
+This is an early playable alpha, not the finished game. The forest, ruins, and character are built from simple procedural 3D meshes. The game currently has no multiplayer, saving, enemies/combat, finished art, or Android APK. Automated browser tests are configured in GitHub Actions; check the Actions tab for the actual result before calling tests passed.
