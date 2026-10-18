@@ -77,7 +77,6 @@ func _build_hud() -> void:
 	_status_label = Label.new()
 	_status_label.set_anchors_preset(Control.PRESET_BOTTOM_WIDE)
 	_status_label.position = Vector2(0.0, -64.0)
-	_status_label.size = Vector2(1000.0, 40.0)
 	_status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_status_label.add_theme_font_size_override("font_size", 17)
 	_status_label.add_theme_color_override("font_color", Color(0.94, 0.96, 0.88))
