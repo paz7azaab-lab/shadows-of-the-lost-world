@@ -25,7 +25,7 @@ func _ensure_interact_action() -> void:
 	if not InputMap.action_has_event(&"interact", event):
 		InputMap.action_add_event(&"interact", event)
 
-func _add_action_button(parent: Control, label: String, action: StringName, offset: Vector2, preset: Control.LayoutPreset) -> void:
+func _add_action_button(parent: Control, label: String, action: StringName, offset: Vector2, preset: int) -> void:
 	var button := Button.new()
 	button.text = label
 	button.custom_minimum_size = BUTTON_SIZE
