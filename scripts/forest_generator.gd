@@ -33,19 +33,33 @@ func _spawn_trees() -> void:
 		var z := _rng.randf_range(-forest_radius, forest_radius)
 		if Vector2(x, z).length() < 6.0:
 			continue
+		if Vector2(x, z + 15.0).length() < 6.0:
+			continue
+
 		var tree := Node3D.new()
 		tree.position = Vector3(x, 0.0, z)
 		add_child(tree)
 
+		var trunk_height := _rng.randf_range(2.2, 3.3)
 		var trunk_mesh := CylinderMesh.new()
 		trunk_mesh.top_radius = 0.20
 		trunk_mesh.bottom_radius = 0.34
-		trunk_mesh.height = _rng.randf_range(2.2, 3.3)
+		trunk_mesh.height = trunk_height
 		var trunk := MeshInstance3D.new()
 		trunk.mesh = trunk_mesh
 		trunk.material_override = _bark_material
-		trunk.position.y = trunk_mesh.height * 0.5
+		trunk.position.y = trunk_height * 0.5
 		tree.add_child(trunk)
+
+		var trunk_body := StaticBody3D.new()
+		trunk_body.position.y = trunk_height * 0.5
+		tree.add_child(trunk_body)
+		var trunk_collision := CollisionShape3D.new()
+		var trunk_shape := CylinderShape3D.new()
+		trunk_shape.radius = 0.32
+		trunk_shape.height = trunk_height
+		trunk_collision.shape = trunk_shape
+		trunk_body.add_child(trunk_collision)
 
 		var crown_mesh := SphereMesh.new()
 		crown_mesh.radius = _rng.randf_range(1.0, 1.5)
@@ -53,7 +67,7 @@ func _spawn_trees() -> void:
 		var crown := MeshInstance3D.new()
 		crown.mesh = crown_mesh
 		crown.material_override = _leaf_materials[_rng.randi_range(0, _leaf_materials.size() - 1)]
-		crown.position.y = trunk_mesh.height + 0.35
+		crown.position.y = trunk_height + 0.35
 		crown.scale = Vector3(1.0, 1.25, 1.0)
 		tree.add_child(crown)
 
