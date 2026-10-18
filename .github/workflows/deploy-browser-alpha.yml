@@ -1,11 +1,6 @@
 name: Deploy Browser Alpha
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'index.html'
-      - '.github/workflows/deploy-browser-alpha.yml'
   workflow_dispatch:
 
 permissions:
