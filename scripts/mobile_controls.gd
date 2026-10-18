@@ -4,6 +4,7 @@ const BUTTON_SIZE := Vector2(54.0, 54.0)
 var _held_actions: Array[StringName] = []
 
 func _ready() -> void:
+	_ensure_interact_action()
 	var layer := Control.new()
 	layer.name = "TouchControlLayer"
 	layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -15,6 +16,14 @@ func _ready() -> void:
 	_add_action_button(layer, "▼", &"ui_down", Vector2(78, -58), Control.PRESET_BOTTOM_LEFT)
 	_add_action_button(layer, "▶", &"ui_right", Vector2(134, -112), Control.PRESET_BOTTOM_LEFT)
 	_add_action_button(layer, "E", &"interact", Vector2(-86, -94), Control.PRESET_BOTTOM_RIGHT)
+
+func _ensure_interact_action() -> void:
+	if not InputMap.has_action(&"interact"):
+		InputMap.add_action(&"interact")
+	var event := InputEventKey.new()
+	event.physical_keycode = KEY_E
+	if not InputMap.action_has_event(&"interact", event):
+		InputMap.action_add_event(&"interact", event)
 
 func _add_action_button(parent: Control, label: String, action: StringName, offset: Vector2, preset: Control.LayoutPreset) -> void:
 	var button := Button.new()
